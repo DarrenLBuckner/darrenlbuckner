@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import type { StoryBlock } from '@/lib/types'
 
 export const revalidate = 60
@@ -29,11 +29,15 @@ function getEraOrder(era: string): number {
 }
 
 export default async function StoryPage() {
-  const { data: blocks } = await supabase
+  const { data: blocks, error } = await supabaseAdmin
     .from('story_blocks')
     .select('*')
     .eq('is_public', true)
     .order('weight', { ascending: true })
+
+  if (error) {
+    console.error('[story] failed to load story_blocks:', error)
+  }
 
   const storyBlocks: StoryBlock[] = blocks ?? []
 

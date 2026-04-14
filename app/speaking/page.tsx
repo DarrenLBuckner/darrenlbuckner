@@ -10,6 +10,13 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://darrenlbuckner.com/speaking' },
 }
 
+const formats = [
+  { label: 'Keynote', detail: '30–60 minutes' },
+  { label: 'Panel', detail: 'Moderated or panelist' },
+  { label: 'Fireside Chat', detail: 'Conversational format' },
+  { label: 'Workshop', detail: '90 min – half day' },
+]
+
 export default async function SpeakingPage() {
   const { data } = await supabase
     .from('speaking_topics')
@@ -34,6 +41,41 @@ export default async function SpeakingPage() {
           Darren L. Buckner speaks on entrepreneurship, building with AI,
           PropTech innovation, and creating technology for underserved markets.
         </p>
+
+        {/* Speaker bio */}
+        <div className="mt-12 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-accent mb-4">
+            Speaker Bio
+          </p>
+          <p className="leading-relaxed">
+            Darren L. Buckner is an American entrepreneur, Army veteran, and
+            self-taught technologist who built Portal Home Hub — a global real
+            estate platform serving the Caribbean, Africa, and Latin America.
+            Born in North St. Louis, Missouri, he served in the U.S. Army from
+            1989 to 1995 before spending decades in construction, real estate,
+            and technology. He used AI tools including Claude and ChatGPT to
+            teach himself full-stack development and build production platforms
+            from scratch.
+          </p>
+        </div>
+
+        {/* Speaking formats */}
+        <div className="mt-16">
+          <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+            Formats
+          </h2>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {formats.map((f) => (
+              <div
+                key={f.label}
+                className="rounded-lg border border-border bg-surface p-4 text-center"
+              >
+                <p className="font-semibold">{f.label}</p>
+                <p className="mt-1 text-xs text-muted">{f.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Featured topics */}
         {featured.length > 0 && (
@@ -62,6 +104,41 @@ export default async function SpeakingPage() {
             </div>
           </div>
         )}
+
+        {/* Booking logistics */}
+        <div className="mt-16 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <h2 className="text-lg font-semibold mb-4">Booking Information</h2>
+          <div className="grid gap-6 sm:grid-cols-2 text-sm">
+            <div>
+              <p className="font-medium text-accent">Availability</p>
+              <p className="mt-1 text-muted">
+                Virtual and in-person engagements. Based in St. Louis, MO —
+                available to travel domestically and internationally.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-accent">Lead Time</p>
+              <p className="mt-1 text-muted">
+                4–6 weeks preferred for in-person events. Virtual engagements
+                can be accommodated with shorter notice.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-accent">Technical Requirements</p>
+              <p className="mt-1 text-muted">
+                Lapel or handheld microphone, HDMI connection for slides,
+                confidence monitor if available.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium text-accent">Fees</p>
+              <p className="mt-1 text-muted">
+                Speaking fees vary by event type, audience size, and format.
+                Submit an inquiry below for a custom quote.
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Inquiry form */}
         <div className="mt-24 border-t border-border pt-16">

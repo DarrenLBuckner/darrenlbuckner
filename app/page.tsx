@@ -30,6 +30,7 @@ const jsonLd = {
   sameAs: [
     'https://portalhomehub.com',
     'https://guyanahomehub.com',
+    'https://www.youtube.com/@DarrenLBuckner',
   ],
   birthPlace: {
     '@type': 'Place',
@@ -78,7 +79,7 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="flex min-h-[85vh] flex-col items-center justify-center px-6 text-center">
         <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent">
-          Entrepreneur &middot; Builder &middot; Veteran
+          Entrepreneur &middot; Builder &middot; Technologist &middot; Veteran
         </p>
         <h1 className="text-5xl font-bold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
           Darren L. Buckner
@@ -155,21 +156,34 @@ export default async function HomePage() {
       <section className="border-t border-border px-6 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Building for Underserved Markets
+            Building Technology for the Global South
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-muted leading-relaxed">
-            Born in North St. Louis, Missouri. Army veteran. Self-taught
-            developer who used AI to build full-stack platforms connecting
-            buyers to real estate across the Caribbean, Africa, and Latin
-            America. Based in St. Louis with deep ties to Guyana and South
+            Born in North St. Louis. Served six years in the U.S. Army. Spent
+            decades in construction and real estate across 30+ states. Then
+            taught himself to code using Claude and ChatGPT — and built Portal
+            Home Hub, a global real estate platform connecting buyers to
+            properties across the Caribbean, Africa, and Latin America. The
+            markets that billion-dollar platforms overlooked.
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-muted leading-relaxed">
+            Based in St. Louis, Missouri with deep ties to Guyana and South
             Africa.
           </p>
-          <Link
-            href="/ventures"
-            className="mt-8 inline-block text-sm text-accent hover:text-accent-dim transition-colors"
-          >
-            Explore Ventures &rarr;
-          </Link>
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
+            <Link
+              href="/ventures"
+              className="text-sm text-accent hover:text-accent-dim transition-colors"
+            >
+              Explore Ventures &rarr;
+            </Link>
+            <Link
+              href="/story"
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Read the Full Story &rarr;
+            </Link>
+          </div>
         </div>
       </section>
     </>

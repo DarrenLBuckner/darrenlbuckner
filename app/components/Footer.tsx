@@ -25,6 +25,9 @@ export default function Footer() {
             <Link href="/press" className="hover:text-foreground transition-colors">
               Press
             </Link>
+            <Link href="/contact" className="hover:text-foreground transition-colors">
+              Contact
+            </Link>
           </div>
         </div>
 

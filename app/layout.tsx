@@ -32,15 +32,15 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Darren L. Buckner',
-    title: 'Darren L. Buckner — Entrepreneur, Builder, Veteran',
+    title: 'Darren L. Buckner',
     description:
-      'Entrepreneur, real estate developer, Army veteran, and self-taught technologist building for the markets the world forgot.',
+      'Entrepreneur, Builder, Technologist, Veteran. Founder of Portal Home Hub — the Zillow of the Global South.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Darren L. Buckner',
     description:
-      'Entrepreneur, real estate developer, Army veteran, and self-taught technologist.',
+      'Entrepreneur, Builder, Technologist, Veteran. Founder of Portal Home Hub — the Zillow of the Global South.',
   },
   robots: {
     index: true,

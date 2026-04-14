@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://darrenlbuckner.com/press' },
 }
 
+function getYouTubeId(url: string): string | null {
+  const match = url.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
+  )
+  return match?.[1] ?? null
+}
+
 export default async function PressPage() {
   const { data } = await supabase
     .from('press_items')
@@ -20,6 +27,11 @@ export default async function PressPage() {
   const featured = pressItems.filter((p) => p.is_featured)
   const rest = pressItems.filter((p) => !p.is_featured)
 
+  // Items with embeddable video
+  const videoItems = pressItems.filter(
+    (p) => p.embed_url && getYouTubeId(p.embed_url)
+  )
+
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
@@ -30,8 +42,43 @@ export default async function PressPage() {
           Press
         </h1>
         <p className="mt-4 max-w-2xl text-muted leading-relaxed">
-          Coverage and features about Darren L. Buckner and his ventures.
+          Coverage, interviews, and features about Darren L. Buckner and his
+          ventures.
         </p>
+
+        {/* Video embeds */}
+        {videoItems.length > 0 && (
+          <div className="mt-16">
+            <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+              Video &amp; Interviews
+            </h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              {videoItems.map((item) => {
+                const ytId = getYouTubeId(item.embed_url!)
+                return (
+                  <div
+                    key={item.id}
+                    className="rounded-xl border border-border bg-surface overflow-hidden"
+                  >
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src={`https://www.youtube.com/embed/${ytId}`}
+                        title={item.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-semibold text-lg">{item.title}</h3>
+                      <p className="mt-1 text-sm text-muted">{item.outlet}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Featured press */}
         {featured.length > 0 && (
@@ -118,7 +165,10 @@ function PressCard({
           rel="noopener noreferrer"
           className="mt-4 inline-block text-sm text-accent hover:text-accent-dim transition-colors"
         >
-          Read Article &rarr;
+          {item.type === 'video' || item.type === 'interview'
+            ? 'Watch'
+            : 'Read Article'}{' '}
+          &rarr;
         </a>
       )}
     </div>

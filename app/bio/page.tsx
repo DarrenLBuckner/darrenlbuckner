@@ -4,6 +4,8 @@ import type { ContextProfile } from '@/lib/types'
 import BioGenerator from './BioGenerator'
 import PasswordGate from '@/app/components/PasswordGate'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: 'Bio',
   description:

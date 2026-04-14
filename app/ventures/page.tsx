@@ -2,6 +2,8 @@ import { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import type { Venture } from '@/lib/types'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: 'Ventures',
   description:

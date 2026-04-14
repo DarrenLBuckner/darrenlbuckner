@@ -3,6 +3,8 @@ import { supabase } from '@/lib/supabase'
 import type { SpeakingTopic } from '@/lib/types'
 import InquiryForm from './InquiryForm'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
   title: 'Speaking',
   description:

@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import type { PressItem } from '@/lib/types'
 
+export const revalidate = 60
+
 export const metadata: Metadata = {
   alternates: { canonical: 'https://darrenlbuckner.com' },
 }

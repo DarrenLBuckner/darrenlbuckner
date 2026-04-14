@@ -10,7 +10,6 @@ const links = [
   { href: '/ventures', label: 'Ventures' },
   { href: '/speaking', label: 'Speaking' },
   { href: '/press', label: 'Press' },
-  { href: '/bio', label: 'Bio' },
 ]
 
 export default function Navigation() {

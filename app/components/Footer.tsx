@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <p className="text-lg font-semibold">Darren L. Buckner</p>
             <p className="mt-1 text-sm text-muted">
-              Entrepreneur &middot; Builder &middot; Veteran
+              Entrepreneur &middot; Builder &middot; Technologist &middot; Veteran
             </p>
           </div>
 

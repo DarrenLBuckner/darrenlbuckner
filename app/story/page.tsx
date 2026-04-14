@@ -10,12 +10,13 @@ export const metadata: Metadata = {
 }
 
 const eraOrder = [
-  'Early Life',
-  'Military',
-  'Post-Military',
-  'Entrepreneurship',
-  'Technology',
-  'Present',
+  'north_stl',
+  'army',
+  'road',
+  'la',
+  'detroit',
+  'atlanta',
+  'global',
 ]
 
 function getEraOrder(era: string): number {

@@ -6,8 +6,27 @@ import type { PressItem } from '@/lib/types'
 
 export const revalidate = 60
 
+const homeTitle =
+  'Darren L. Buckner — Founder of Portal HomeHub, Guyana HomeHub, PivotPoint AI & Pydana Collection'
+
+const homeDescription =
+  'American entrepreneur, U.S. Army veteran, and AI-first technologist. Founder of Portal HomeHub, Guyana HomeHub, PivotPoint AI, and Pydana Collection.'
+
 export const metadata: Metadata = {
+  title: { absolute: homeTitle },
+  description: homeDescription,
   alternates: { canonical: 'https://darrenlbuckner.com' },
+  openGraph: {
+    title: homeTitle,
+    description: homeDescription,
+    url: 'https://darrenlbuckner.com',
+    type: 'website',
+  },
+  twitter: {
+    title: homeTitle,
+    description: homeDescription,
+    card: 'summary_large_image',
+  },
 }
 
 const jsonLd = {

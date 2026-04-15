@@ -82,6 +82,34 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      {/* Origin story — Guyana connection */}
+      <section className="px-6 pb-16">
+        <div className="mx-auto max-w-3xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Origin Story
+          </p>
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            The Guyana Connection
+          </h2>
+          <p className="mt-4 text-muted leading-relaxed">
+            Portal Home Hub launched in Guyana first. The reason wasn&rsquo;t
+            market analysis — it was personal.
+          </p>
+          <figure className="mt-8">
+            <Image
+              src="/images/founder/darren-rochelle.jpg"
+              alt="Darren L. Buckner and Rochelle"
+              width={720}
+              height={478}
+              className="w-full rounded-xl border border-border object-cover"
+            />
+            <figcaption className="mt-3 text-center text-sm italic text-muted">
+              Darren and Rochelle — the Guyana connection.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       {/* Stat callouts */}
       <section className="border-t border-border px-6 py-16">
         <div className="mx-auto max-w-4xl">

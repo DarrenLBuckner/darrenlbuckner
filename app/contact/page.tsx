@@ -8,7 +8,22 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://darrenlbuckner.com/contact' },
 }
 
-export default function ContactPage() {
+const allowedTypes = new Set([
+  'general',
+  'consulting',
+  'speaking',
+  'press',
+  'partnership',
+  'investment',
+])
+
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>
+}) {
+  const { type } = await searchParams
+  const initialType = type && allowedTypes.has(type) ? type : 'general'
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-4xl">
@@ -60,7 +75,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <div className="lg:col-span-3">
-            <ContactForm />
+            <ContactForm initialInquiryType={initialType} />
           </div>
         </div>
       </div>

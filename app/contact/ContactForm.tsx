@@ -2,7 +2,11 @@
 
 import { useState } from 'react'
 
-export default function ContactForm() {
+export default function ContactForm({
+  initialInquiryType = 'general',
+}: {
+  initialInquiryType?: string
+}) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -111,9 +115,11 @@ export default function ContactForm() {
           <select
             id="inquiry_type"
             name="inquiry_type"
+            defaultValue={initialInquiryType}
             className="w-full rounded-lg border border-border bg-surface px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
           >
             <option value="general">General</option>
+            <option value="consulting">Consulting</option>
             <option value="speaking">Speaking</option>
             <option value="press">Press / Media</option>
             <option value="partnership">Partnership</option>

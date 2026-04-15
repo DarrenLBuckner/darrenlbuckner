@@ -40,6 +40,12 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/consulting"
+            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-black transition-colors hover:bg-accent-dim"
+          >
+            Work With Me
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -75,6 +81,13 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/consulting"
+            onClick={() => setMobileOpen(false)}
+            className="mt-3 inline-block rounded-full bg-accent px-5 py-2 text-sm font-semibold text-black transition-colors hover:bg-accent-dim"
+          >
+            Work With Me
+          </Link>
         </div>
       )}
     </nav>

@@ -135,7 +135,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t border-border pt-8 text-xs text-muted sm:flex-row">
-          <p>&copy; 2026 Darren L. Buckner. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Darren L. Buckner. All rights
+            reserved.
+          </p>
           <p>darrenlbuckner.com</p>
         </div>
       </div>

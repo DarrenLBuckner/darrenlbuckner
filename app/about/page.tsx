@@ -92,8 +92,9 @@ export default async function AboutPage() {
             The Guyana Connection
           </h2>
           <p className="mt-4 text-muted leading-relaxed">
-            Portal Home Hub launched in Guyana first. The reason wasn&rsquo;t
-            market analysis — it was personal.
+            Rochelle is Guyanese. Her father is Milton Pydana — a cricket
+            legend in Guyana. That&rsquo;s not background color. That&rsquo;s
+            why Guyana was first.
           </p>
           <figure className="mt-8">
             <Image

@@ -87,8 +87,9 @@ export default async function HomePage() {
           Darren L. Buckner
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-          He didn&rsquo;t wait for the tools to exist. He built them — for the
-          markets the world forgot.
+          Founder of Portal HomeHub, Guyana HomeHub, Pydana Collection &amp;
+          PivotPoint AI. U.S. Army veteran. Self-taught technologist who
+          shipped a global PropTech platform in 7 months with AI.
         </p>
 
         {/* Credential badges */}

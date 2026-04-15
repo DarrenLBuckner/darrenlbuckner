@@ -65,6 +65,19 @@ export interface Bio {
   is_current: boolean
 }
 
+export interface Insight {
+  id: string
+  slug: string
+  title: string
+  excerpt: string
+  content: string
+  published_date: string
+  is_published: boolean
+  read_time: string | null
+  created_at?: string
+  updated_at?: string
+}
+
 export interface InquiryLead {
   id: string
   name: string

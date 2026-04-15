@@ -92,9 +92,21 @@ export default async function AboutPage() {
             The Guyana Connection
           </h2>
           <p className="mt-4 text-muted leading-relaxed">
-            Rochelle is Guyanese. Her father is Milton Pydana — a cricket
-            legend in Guyana. That&rsquo;s not background color. That&rsquo;s
-            why Guyana was first.
+            Rochelle is Guyanese. Her late father,{' '}
+            <span itemScope itemType="https://schema.org/Person">
+              <span itemProp="name">Milton Pydana</span>
+              <link
+                itemProp="sameAs"
+                href="https://en.wikipedia.org/wiki/Milton_Pydanna"
+              />
+              <link
+                itemProp="sameAs"
+                href="https://www.espncricinfo.com/cricketers/milton-pydanna-52683"
+              />
+            </span>
+            , was a West Indies cricketer and a legend of Guyanese cricket.
+            That&rsquo;s not background color. That&rsquo;s why Guyana was
+            first.
           </p>
           <figure className="mt-8">
             <Image

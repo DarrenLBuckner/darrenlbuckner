@@ -35,6 +35,18 @@ const jsonLd = {
     'https://guyanahomehub.com',
     'https://www.youtube.com/@DarrenLBuckner',
   ],
+  knows: [
+    {
+      '@type': 'Person',
+      name: 'Milton Pydana',
+      description:
+        'West Indies cricketer and legend of Guyanese cricket. Father-in-law of Darren L. Buckner.',
+      sameAs: [
+        'https://en.wikipedia.org/wiki/Milton_Pydanna',
+        'https://www.espncricinfo.com/cricketers/milton-pydanna-52683',
+      ],
+    },
+  ],
   birthPlace: {
     '@type': 'Place',
     name: 'North St. Louis, Missouri',

@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import type { Venture } from '@/lib/types'
 
 export const revalidate = 60
@@ -12,10 +12,16 @@ export const metadata: Metadata = {
 }
 
 export default async function VenturesPage() {
-  const { data } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('ventures')
     .select('*')
     .order('display_order', { ascending: true })
+
+  if (error) {
+    console.error('[ventures] failed to load ventures:', error)
+  } else if (!data || data.length === 0) {
+    console.warn('[ventures] query returned no rows')
+  }
 
   const ventures: Venture[] = data ?? []
 

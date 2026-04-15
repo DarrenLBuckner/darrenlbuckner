@@ -18,7 +18,9 @@ const eraOrder = [
   'la',
   'detroit',
   'atlanta',
+  'guyana_connection',
   'global',
+  'south_africa',
 ]
 
 function getEraOrder(era: string): number {

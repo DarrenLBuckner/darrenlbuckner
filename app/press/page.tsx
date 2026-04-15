@@ -1,6 +1,64 @@
 import { Metadata } from 'next'
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import type { PressItem } from '@/lib/types'
+
+type ExtendedInterview = {
+  pullQuote: string
+  attribution: string
+  summary: string
+  meta: { label: string; value: string }[]
+  jsonLd: Record<string, unknown>
+}
+
+const EXTENDED_INTERVIEWS: Record<string, ExtendedInterview> = {
+  KP196IvQCfY: {
+    pullQuote:
+      "This morning we were talking with Darren Buckner. He's a CEO of Portal HomeHub and Guyana HomeHub. Check out that website — Guyana HomeHub. If you're looking to buy a new home, looking to rent a property, they brought everything in one place. Guyanahomehub.com.",
+    attribution: '— Gordon Mosley, NewsSource Guyana, January 8, 2026',
+    summary:
+      "In this live interview on NewsSource Guyana, host Gordon Mosley spoke with Darren L. Buckner, CEO and Founder of Portal HomeHub and Guyana HomeHub, about the platform's role in Guyana's growing real estate market. Topics covered included Guyana's 34% GDP growth, the oil boom's impact on property demand, diaspora buyers seeking retirement and investment homes, the verified agent process, and the launch of guyanahomehub.com as the first digital real estate platform serving both local and overseas Guyanese buyers.",
+    meta: [
+      { label: 'Host', value: 'Gordon Mosley' },
+      { label: 'Show', value: 'NewsSource Guyana' },
+      { label: 'Date', value: 'January 8, 2026' },
+      { label: 'Location', value: 'Georgetown, Guyana' },
+      { label: 'Format', value: 'Live radio/TV interview' },
+      { label: 'Platform mentioned', value: 'guyanahomehub.com' },
+    ],
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'NewsArticle',
+      headline:
+        'Darren L. Buckner, CEO of Portal HomeHub and Guyana HomeHub — NewsSource Guyana Interview',
+      datePublished: '2026-01-08',
+      author: {
+        '@type': 'Person',
+        name: 'Gordon Mosley',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'NewsSource Guyana',
+      },
+      about: [
+        {
+          '@type': 'Person',
+          name: 'Darren L. Buckner',
+          url: 'https://darrenlbuckner.com',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Portal HomeHub',
+          url: 'https://portalhomehub.com',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Guyana HomeHub',
+          url: 'https://guyanahomehub.com',
+        },
+      ],
+    },
+  },
+}
 
 export const revalidate = 60
 
@@ -19,10 +77,14 @@ function getYouTubeId(url: string): string | null {
 }
 
 export default async function PressPage() {
-  const { data } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('press_items')
     .select('*')
     .order('published_date', { ascending: false })
+
+  if (error) {
+    console.error('[press] failed to load press_items:', error)
+  }
 
   const pressItems: PressItem[] = data ?? []
 
@@ -50,19 +112,28 @@ export default async function PressPage() {
 
         {/* Video embeds */}
         {videoItems.length > 0 && (
-          <div className="mt-16">
-            <h2 className="mb-8 text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+          <div className="mt-16 space-y-12">
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
               Video &amp; Interviews
             </h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              {videoItems.map((item) => {
-                const ytId = getYouTubeId(item.embed_url!)
-                return (
-                  <div
-                    key={item.id}
-                    className="rounded-xl border border-border bg-surface overflow-hidden"
-                  >
-                    <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            {videoItems.map((item) => {
+              const ytId = getYouTubeId(item.embed_url!)!
+              const extended = EXTENDED_INTERVIEWS[ytId]
+              return (
+                <article key={item.id} className="space-y-8">
+                  {extended && (
+                    <script
+                      type="application/ld+json"
+                      dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(extended.jsonLd),
+                      }}
+                    />
+                  )}
+                  <div className="rounded-xl border border-border bg-surface overflow-hidden">
+                    <div
+                      className="relative w-full"
+                      style={{ paddingBottom: '56.25%' }}
+                    >
                       <iframe
                         src={`https://www.youtube.com/embed/${ytId}`}
                         title={item.title}
@@ -76,9 +147,45 @@ export default async function PressPage() {
                       <p className="mt-1 text-sm text-muted">{item.outlet}</p>
                     </div>
                   </div>
-                )
-              })}
-            </div>
+
+                  {extended && (
+                    <div className="grid gap-10 lg:grid-cols-3">
+                      <blockquote className="lg:col-span-2 rounded-xl border-l-4 border-accent bg-surface p-6 sm:p-8">
+                        <p className="text-lg leading-relaxed text-foreground sm:text-xl">
+                          &ldquo;{extended.pullQuote}&rdquo;
+                        </p>
+                        <footer className="mt-4 text-sm text-accent">
+                          {extended.attribution}
+                        </footer>
+                      </blockquote>
+
+                      <dl className="rounded-xl border border-border bg-surface p-6 text-sm sm:p-8">
+                        {extended.meta.map((m) => (
+                          <div
+                            key={m.label}
+                            className="flex flex-col gap-0.5 border-b border-border py-2 last:border-b-0 last:pb-0 first:pt-0"
+                          >
+                            <dt className="text-xs font-medium uppercase tracking-[0.15em] text-muted">
+                              {m.label}
+                            </dt>
+                            <dd className="text-foreground">{m.value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+
+                      <div className="lg:col-span-3">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+                          Interview Summary
+                        </p>
+                        <p className="mt-4 text-muted leading-relaxed">
+                          {extended.summary}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </article>
+              )
+            })}
           </div>
         )}
 

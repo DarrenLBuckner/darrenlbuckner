@@ -18,6 +18,30 @@ const stats = [
   { value: 'U.S. Army Veteran', label: '1989–1995' },
 ]
 
+const nextGen = [
+  {
+    name: 'Selena Buckner',
+    body:
+      'U.S. Air Force veteran. Linguist. Real estate investor in Florida. Planned operator for Colombia HomeHub — the next Portal HomeHub territory launch.',
+    href: null,
+    linkLabel: null,
+  },
+  {
+    name: 'Kira Buckner',
+    body:
+      'Co-founder of Odori — the first professional networking platform built for the global dance industry.',
+    href: 'https://odori.io',
+    linkLabel: 'odori.io →',
+  },
+  {
+    name: 'Malcolm Buckner',
+    body:
+      'Based in Johannesburg, South Africa. Attending Crawford International School. Already sharing the platform with his own audience.',
+    href: 'https://www.tiktok.com/@mal_be_trippin',
+    linkLabel: '@mal_be_trippin on TikTok →',
+  },
+]
+
 export default async function AboutPage() {
   const { data: bio, error } = await supabaseAdmin
     .from('bios')
@@ -120,6 +144,88 @@ export default async function AboutPage() {
               Darren and Rochelle — the Guyana connection.
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      {/* Rochelle — the partner behind the vision */}
+      <section className="px-6 pb-16">
+        <div className="mx-auto max-w-3xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            The Partner Behind the Vision
+          </p>
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            Rochelle Pydana Buckner
+          </h2>
+          <div className="mt-6 space-y-5 text-muted leading-relaxed">
+            <p>
+              Rochelle Pydana Buckner is not background color. She is
+              architecture.
+            </p>
+            <p>
+              She studied at the University of Guyana before earning her
+              degree in Laboratory Science from Michigan State University. She
+              brought that same scientific precision to everything she has
+              built alongside Darren.
+            </p>
+            <p>
+              She is the co-founder of PivotPoint AI — the AI strategy venture
+              they built together. She is the founder of Pydana Collection, a
+              consumer brand she launched in Georgia, applying her science
+              background to product development and rooted in her Guyanese
+              heritage.
+            </p>
+            <p>
+              She is also the reason Guyana was first. Her roots, her family,
+              her late father Milton Pydana — a West Indies cricketer and
+              legend of Guyanese cricket — that&rsquo;s not a footnote.
+              That&rsquo;s the founding decision.
+            </p>
+            <p>
+              The Buckner family is rooted in Johannesburg, South Africa.
+              Darren moves where the work takes him — Guyana, St. Louis,
+              Johannesburg. That&rsquo;s what building globally actually looks
+              like.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Next Generation */}
+      <section className="px-6 pb-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-3xl">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              The Next Generation
+            </p>
+            <h2 className="text-2xl font-semibold sm:text-3xl">
+              They&rsquo;re Already Building
+            </h2>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {nextGen.map((person) => (
+              <div
+                key={person.name}
+                className="rounded-xl border border-border bg-surface p-6 transition-colors hover:border-accent sm:p-8"
+              >
+                <h3 className="text-lg font-semibold text-accent">
+                  {person.name}
+                </h3>
+                <p className="mt-4 text-sm text-muted leading-relaxed">
+                  {person.body}
+                </p>
+                {person.href && person.linkLabel && (
+                  <a
+                    href={person.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-block text-sm text-accent hover:text-accent-dim transition-colors"
+                  >
+                    {person.linkLabel}
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

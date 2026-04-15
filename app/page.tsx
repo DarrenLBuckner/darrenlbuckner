@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import type { PressItem } from '@/lib/types'
@@ -80,6 +81,14 @@ export default async function HomePage() {
 
       {/* Hero */}
       <section className="flex min-h-[85vh] flex-col items-center justify-center px-6 text-center">
+        <Image
+          src="/images/founder/headshot.jpg"
+          alt="Darren L. Buckner"
+          width={320}
+          height={320}
+          priority
+          className="mb-8 h-32 w-32 rounded-full object-cover ring-2 ring-accent/40 sm:h-40 sm:w-40"
+        />
         <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent">
           Entrepreneur &middot; Builder &middot; Technologist &middot; Veteran
         </p>

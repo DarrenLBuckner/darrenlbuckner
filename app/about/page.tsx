@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { supabaseAdmin } from '@/lib/supabase'
 
@@ -34,6 +35,14 @@ export default async function AboutPage() {
       {/* Hero */}
       <section className="px-6 pt-20 pb-12">
         <div className="mx-auto max-w-4xl text-center">
+          <Image
+            src="/images/founder/headshot.jpg"
+            alt="Darren L. Buckner"
+            width={288}
+            height={288}
+            priority
+            className="mx-auto mb-8 h-28 w-28 rounded-full object-cover ring-2 ring-accent/40 sm:h-36 sm:w-36"
+          />
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent">
             Entrepreneur &middot; Builder &middot; Technologist &middot; Veteran
           </p>
@@ -45,17 +54,30 @@ export default async function AboutPage() {
 
       {/* Bio */}
       <section className="px-6 pb-16">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
           <div className="rounded-xl border border-border bg-surface p-6 sm:p-10">
-            {bio?.content ? (
-              <div className="space-y-5 text-muted leading-relaxed whitespace-pre-line">
-                {bio.content}
+            <div className="grid gap-8 md:grid-cols-3 md:gap-10">
+              <div className="md:col-span-1">
+                <Image
+                  src="/images/founder/headshot-story.jpg"
+                  alt="Darren L. Buckner portrait"
+                  width={1024}
+                  height={1024}
+                  className="w-full rounded-lg object-cover"
+                />
               </div>
-            ) : (
-              <p className="text-muted">
-                Bio temporarily unavailable. Please check back shortly.
-              </p>
-            )}
+              <div className="md:col-span-2">
+                {bio?.content ? (
+                  <div className="space-y-5 text-muted leading-relaxed whitespace-pre-line">
+                    {bio.content}
+                  </div>
+                ) : (
+                  <p className="text-muted">
+                    Bio temporarily unavailable. Please check back shortly.
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </section>

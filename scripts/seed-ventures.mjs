@@ -35,7 +35,7 @@ const ventures = [
     status: 'active',
     category: 'technology',
     years_active: '2025–present',
-    highlight_metric: 'Live in 177 countries',
+    highlight_metric: 'First digital real estate platform in Guyana',
     is_featured: true,
     display_order: 2,
   },

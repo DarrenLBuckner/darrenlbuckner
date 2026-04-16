@@ -67,7 +67,7 @@ That version was better.
 
 **What I actually built**
 
-By December 2025 — seven months after that first ChatGPT conversation — Guyana HomeHub was live. The first digital real estate platform in Guyana. Verified listings. Trusted agents. Secure transactions. Live in 177 countries.
+By December 2025 — seven months after that first ChatGPT conversation — Guyana HomeHub was live. The first digital real estate platform in Guyana. Verified listings. Trusted agents. Secure transactions. Live in Guyana.
 
 Portal HomeHub — the platform powering it — now has 51 markets secured across the Caribbean, Latin America, and Africa.
 

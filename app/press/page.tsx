@@ -109,6 +109,13 @@ export default async function PressPage() {
           Coverage, interviews, and features about Darren L. Buckner and his
           ventures.
         </p>
+        <p className="mt-6 max-w-2xl text-muted leading-relaxed">
+          Darren L. Buckner is a U.S. Army veteran, serial entrepreneur, and
+          self-taught technologist from St. Louis, Missouri. He is the founder
+          of Portal HomeHub, Guyana HomeHub, and PivotPoint AI &mdash; building
+          the Zillow of the Global South across the Caribbean, Africa, and
+          Latin America.
+        </p>
 
         {/* Video embeds */}
         {videoItems.length > 0 && (

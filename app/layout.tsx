@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   },
   description:
     'Darren L. Buckner is an entrepreneur, real estate developer, Army veteran, and self-taught technologist. Founder of Portal Home Hub.',
+  authors: [{ name: 'Darren L. Buckner', url: siteUrl }],
+  creator: 'Darren L. Buckner',
+  publisher: 'Darren L. Buckner',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: siteUrl,

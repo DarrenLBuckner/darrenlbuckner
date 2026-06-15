@@ -41,6 +41,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/insights/caribbean-real-estate-integration`,
+      lastModified: new Date('2026-06-14'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/insights/world-is-watching-guyana`,
+      lastModified: new Date('2026-05-24'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/insights/licensed-agent-diaspora-guyana`,
+      lastModified: new Date('2026-05-05'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/insights/built-global-platform-7-months`,
       lastModified: new Date('2026-04-15'),
       changeFrequency: 'monthly',

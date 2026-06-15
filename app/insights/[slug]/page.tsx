@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabaseAdmin } from '@/lib/supabase'
@@ -7,6 +8,22 @@ import type { Insight } from '@/lib/types'
 export const revalidate = 60
 
 const siteUrl = 'https://darrenlbuckner.com'
+
+// Optional hero image per post, keyed by slug. Mirrors the per-item pattern
+// used on the Press page. Keeps images out of the DB (no schema change) while
+// still feeding alt text + an ImageObject into the article's structured data.
+const POST_IMAGES: Record<
+  string,
+  { src: string; alt: string; credit: string; width: number; height: number }
+> = {
+  'world-is-watching-guyana': {
+    src: '/images/insights/real-estate-forward-guyana-2026.jpg',
+    alt: 'Darren L. Buckner speaking at Real Estate Forward: Guyana 2026 & Beyond in Georgetown, Guyana',
+    credit: 'Photo by Pascal John of Pascal Media GY',
+    width: 963,
+    height: 1280,
+  },
+}
 
 async function getPost(slug: string): Promise<Insight | null> {
   const { data, error } = await supabaseAdmin
@@ -119,6 +136,7 @@ export default async function InsightPostPage({
   if (!post) notFound()
 
   const canonical = `${siteUrl}/insights/${post.slug}`
+  const heroImage = POST_IMAGES[post.slug] ?? null
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -126,15 +144,33 @@ export default async function InsightPostPage({
     headline: post.title,
     description: post.excerpt,
     datePublished: post.published_date,
+    ...(heroImage && {
+      image: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}${heroImage.src}`,
+        width: heroImage.width,
+        height: heroImage.height,
+        caption: heroImage.alt,
+      },
+    }),
     author: {
       '@type': 'Person',
       name: 'Darren L. Buckner',
       url: siteUrl,
+      jobTitle: 'Founder & CEO, Portal HomeHub',
+      description:
+        'U.S. Army veteran and self-taught technologist from Greater St. Louis, Missouri. Founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI — building the Zillow of the Global South.',
+      sameAs: [
+        'https://portalhomehub.com',
+        'https://guyanahomehub.com',
+        'https://www.linkedin.com/in/darrenlbuckner',
+        'https://x.com/darren_buckner',
+      ],
     },
     publisher: {
-      '@type': 'Person',
-      name: 'Darren L. Buckner',
-      url: siteUrl,
+      '@type': 'Organization',
+      name: 'Portal HomeHub',
+      url: 'https://portalhomehub.com',
     },
     mainEntityOfPage: canonical,
     url: canonical,
@@ -174,6 +210,23 @@ export default async function InsightPostPage({
           <p className="mt-6 text-lg leading-relaxed text-muted sm:text-xl">
             {post.excerpt}
           </p>
+
+          {heroImage && (
+            <figure className="mt-10">
+              <Image
+                src={heroImage.src}
+                alt={heroImage.alt}
+                width={heroImage.width}
+                height={heroImage.height}
+                priority
+                sizes="(max-width: 640px) 100vw, 420px"
+                className="mx-auto w-full max-w-sm rounded-xl border border-border"
+              />
+              <figcaption className="mt-3 text-center text-sm italic text-muted">
+                {heroImage.credit}
+              </figcaption>
+            </figure>
+          )}
 
           <div className="mt-12 border-t border-border pt-10">
             {renderContent(post.content)}

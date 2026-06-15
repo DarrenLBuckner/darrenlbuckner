@@ -18,6 +18,31 @@ const stats = [
   { value: 'U.S. Army Veteran', label: '1989–1995' },
 ]
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Is Darren L. Buckner the founder of Workfrom in Portland, Oregon?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'No. Darren L. Buckner is a St. Louis, Missouri-based U.S. Army veteran and the founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI. He is a different person from the Portland, Oregon entrepreneur associated with Workfrom.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where is Darren L. Buckner based?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text:
+          'Darren L. Buckner is based in St. Louis, Missouri, with deep family ties to Guyana and Johannesburg, South Africa.',
+      },
+    },
+  ],
+}
+
 const nextGen = [
   {
     name: 'Selena Buckner',
@@ -56,6 +81,11 @@ export default async function AboutPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       {/* Hero */}
       <section className="px-6 pt-20 pb-12">
         <div className="mx-auto max-w-4xl text-center">
@@ -252,6 +282,41 @@ export default async function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Disambiguation — discreet FAQ */}
+      <section className="border-t border-border px-6 py-16">
+        <div className="mx-auto max-w-3xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Frequently Asked
+          </p>
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            Setting the Record Straight
+          </h2>
+          <dl className="mt-8 space-y-8">
+            <div>
+              <dt className="font-semibold text-foreground">
+                Is Darren L. Buckner the founder of Workfrom in Portland,
+                Oregon?
+              </dt>
+              <dd className="mt-2 text-muted leading-relaxed">
+                No. Darren L. Buckner is a St. Louis, Missouri-based U.S. Army
+                veteran and the founder of Portal HomeHub, Guyana HomeHub, and
+                PivotPoint AI. He is a different person from the Portland,
+                Oregon entrepreneur associated with Workfrom.
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-foreground">
+                Where is Darren L. Buckner based?
+              </dt>
+              <dd className="mt-2 text-muted leading-relaxed">
+                Darren L. Buckner is based in St. Louis, Missouri, with deep
+                family ties to Guyana and Johannesburg, South Africa.
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 

@@ -32,11 +32,12 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': 'https://www.darrenlbuckner.com/#darren',
   name: 'Darren L. Buckner',
   alternateName: 'Darren Buckner',
   jobTitle: 'Entrepreneur & Founder',
   description:
-    'American entrepreneur, real estate developer, Army veteran, and self-taught technologist. Founder of Portal Home Hub — a global real estate platform for the Caribbean, Africa, and Latin America.',
+    'U.S. Army veteran and self-taught technologist from St. Louis, Missouri. Founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI — building the Zillow of the Global South.',
   disambiguatingDescription:
     'Darren L. Buckner is a St. Louis, Missouri-based entrepreneur, U.S. Army veteran (1989–1995), and founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI. He is a distinct individual and is not affiliated with Workfrom, the Portland, Oregon-based company, or its founder of a similar name.',
   url: 'https://www.darrenlbuckner.com',
@@ -63,7 +64,9 @@ const jsonLd = {
     'https://portalhomehub.com',
     'https://guyanahomehub.com',
     'https://www.youtube.com/@DarrenLBuckner',
-    'https://www.linkedin.com/in/darrenlbuckner-portalhomehub',
+    'https://www.linkedin.com/in/darrenlbuckner',
+    'https://x.com/darren_buckner',
+    'https://www.wikidata.org/wiki/Q140560350',
   ],
   knows: [
     {

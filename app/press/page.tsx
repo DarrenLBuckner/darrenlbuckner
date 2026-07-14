@@ -42,6 +42,7 @@ const EXTENDED_INTERVIEWS: Record<string, ExtendedInterview> = {
       about: [
         {
           '@type': 'Person',
+          '@id': 'https://www.darrenlbuckner.com/#darren',
           name: 'Darren L. Buckner',
           url: 'https://www.darrenlbuckner.com',
         },

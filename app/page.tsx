@@ -81,6 +81,10 @@ const jsonLd = {
     name: 'North St. Louis, Missouri',
   },
   nationality: 'American',
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'United States Army',
+  },
   hasOccupation: [
     {
       '@type': 'Occupation',

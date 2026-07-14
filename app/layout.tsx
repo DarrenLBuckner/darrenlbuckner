@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s | Darren L. Buckner',
   },
   description:
-    'Darren L. Buckner is an entrepreneur, real estate developer, Army veteran, and self-taught technologist. Founder of Portal Home Hub.',
+    'Darren L. Buckner is a St. Louis, Missouri-based entrepreneur, real estate developer, U.S. Army veteran, and self-taught technologist. Founder of Portal Home Hub.',
   authors: [{ name: 'Darren L. Buckner', url: siteUrl }],
   creator: 'Darren L. Buckner',
   publisher: 'Darren L. Buckner',

@@ -63,6 +63,7 @@ const jsonLd = {
     'https://portalhomehub.com',
     'https://guyanahomehub.com',
     'https://www.youtube.com/@DarrenLBuckner',
+    'https://www.linkedin.com/in/darren-l-buckner-1a15b38',
   ],
   knows: [
     {

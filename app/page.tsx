@@ -217,8 +217,9 @@ export default async function HomePage() {
             Building Technology for the Global South
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-muted leading-relaxed">
-            Born in North St. Louis. Served six years in the U.S. Army. Spent
-            decades in construction and real estate across 30+ states. Then
+            Born in North St. Louis. Studied at Talladega College, then served
+            six years in the U.S. Army. Spent decades in construction and real
+            estate across 30+ states. Then
             taught himself to code using Claude and ChatGPT — and built Portal
             Home Hub, a global real estate platform connecting buyers to
             properties across the Caribbean, Africa, and Latin America. The

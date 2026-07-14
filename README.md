@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Darren L. Buckner
 
-## Getting Started
+**Founder & CEO, [Portal HomeHub](https://portalhomehub.com)** — building the real
+estate search infrastructure for the markets Zillow abandoned.
 
-First, run the development server:
+📍 St. Louis, Missouri · 🎖️ U.S. Army veteran · 🛠️ Self-taught, AI-first builder
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+I enlisted in the U.S. Army while still in high school, studied at Talladega
+College, and spent decades in sales, international business, and real estate —
+then taught myself to code and started shipping production software.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### What I'm building
+- 🌍 **[Portal HomeHub](https://portalhomehub.com)** — a multi-territory real estate platform for the Global South. **50+ territories secured**, launching market by market.
+- 🇬🇾 **[Guyana HomeHub](https://guyanahomehub.com)** — live. Jamaica, Colombia, and more in build.
+- 🤖 **PivotPoint AI** — AI strategy and tooling, co-founded with Rochelle Pydana Buckner.
+- 🤝 **Black Business Jumpstart** — a 13K-member community for Black entrepreneurs.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🔗 **[darrenlbuckner.com](https://darrenlbuckner.com)**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<sub>Not affiliated with Workfrom or its Portland, Oregon founder of a similar name.</sub>
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<sub>This repository is the source for **[darrenlbuckner.com](https://darrenlbuckner.com)** — a Next.js app deployed on Vercel.</sub>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Speaking',
   description:
     'Book Darren L. Buckner to speak on entrepreneurship, PropTech, AI-first development, and building for underserved markets.',
-  alternates: { canonical: 'https://darrenlbuckner.com/speaking' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/speaking' },
 }
 
 const formats = [

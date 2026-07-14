@@ -15,11 +15,11 @@ const homeDescription =
 export const metadata: Metadata = {
   title: { absolute: homeTitle },
   description: homeDescription,
-  alternates: { canonical: 'https://darrenlbuckner.com' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com' },
   openGraph: {
     title: homeTitle,
     description: homeDescription,
-    url: 'https://darrenlbuckner.com',
+    url: 'https://www.darrenlbuckner.com',
     type: 'website',
   },
   twitter: {
@@ -39,7 +39,7 @@ const jsonLd = {
     'American entrepreneur, real estate developer, Army veteran, and self-taught technologist. Founder of Portal Home Hub — a global real estate platform for the Caribbean, Africa, and Latin America.',
   disambiguatingDescription:
     'Darren L. Buckner is a St. Louis, Missouri-based entrepreneur, U.S. Army veteran (1989–1995), and founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI. He is a distinct individual and is not affiliated with Workfrom, the Portland, Oregon-based company, or its founder of a similar name.',
-  url: 'https://darrenlbuckner.com',
+  url: 'https://www.darrenlbuckner.com',
   homeLocation: {
     '@type': 'Place',
     name: 'St. Louis, Missouri, United States',

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'About',
   description:
     'Darren L. Buckner — entrepreneur, builder, technologist, and U.S. Army veteran. Founder of Portal Home Hub, a global real estate platform serving the Caribbean, Africa, and Latin America.',
-  alternates: { canonical: 'https://darrenlbuckner.com/about' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/about' },
 }
 
 const stats = [

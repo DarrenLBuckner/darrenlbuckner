@@ -7,7 +7,7 @@ import type { Insight } from '@/lib/types'
 
 export const revalidate = 60
 
-const siteUrl = 'https://darrenlbuckner.com'
+const siteUrl = 'https://www.darrenlbuckner.com'
 
 // Optional hero image per post, keyed by slug. Mirrors the per-item pattern
 // used on the Press page. Keeps images out of the DB (no schema change) while

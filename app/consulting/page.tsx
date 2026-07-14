@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Work With Me',
   description:
     'Light advisory for founders and operators. Darren L. Buckner takes on a small number of engagements around AI for founders, emerging markets strategy, and platform building on a budget.',
-  alternates: { canonical: 'https://darrenlbuckner.com/consulting' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/consulting' },
 }
 
 const offerings = [

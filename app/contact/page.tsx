@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Get in touch with Darren L. Buckner for business inquiries, press, partnerships, and speaking engagements.',
-  alternates: { canonical: 'https://darrenlbuckner.com/contact' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/contact' },
 }
 
 const allowedTypes = new Set([

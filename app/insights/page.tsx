@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Insights',
   description:
     'Long-form writing from Darren L. Buckner on AI, emerging markets, and building platforms that matter.',
-  alternates: { canonical: 'https://darrenlbuckner.com/insights' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/insights' },
 }
 
 function formatDate(iso: string): string {

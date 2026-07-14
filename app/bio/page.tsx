@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Bio',
   description:
     'Generate a context-specific bio for Darren L. Buckner — tailored for press, events, panels, and more.',
-  alternates: { canonical: 'https://darrenlbuckner.com/bio' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/bio' },
 }
 
 export default async function BioPage() {

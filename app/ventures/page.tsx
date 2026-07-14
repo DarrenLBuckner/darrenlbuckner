@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Ventures',
   description:
     'The companies and platforms built by Darren L. Buckner, including Portal Home Hub.',
-  alternates: { canonical: 'https://darrenlbuckner.com/ventures' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/ventures' },
 }
 
 export default async function VenturesPage() {

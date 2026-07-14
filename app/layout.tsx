@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-const siteUrl = 'https://darrenlbuckner.com'
+const siteUrl = 'https://www.darrenlbuckner.com'
 
 export const metadata: Metadata = {
   title: {

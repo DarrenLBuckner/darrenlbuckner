@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: 'Story',
   description:
     'The story of Darren L. Buckner — from North St. Louis to global tech entrepreneurship.',
-  alternates: { canonical: 'https://darrenlbuckner.com/story' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/story' },
 }
 
 const eraOrder = [

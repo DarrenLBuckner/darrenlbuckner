@@ -43,7 +43,7 @@ const EXTENDED_INTERVIEWS: Record<string, ExtendedInterview> = {
         {
           '@type': 'Person',
           name: 'Darren L. Buckner',
-          url: 'https://darrenlbuckner.com',
+          url: 'https://www.darrenlbuckner.com',
         },
         {
           '@type': 'Organization',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: 'Press',
   description:
     'Press coverage and media features about Darren L. Buckner and Portal Home Hub.',
-  alternates: { canonical: 'https://darrenlbuckner.com/press' },
+  alternates: { canonical: 'https://www.darrenlbuckner.com/press' },
 }
 
 function getYouTubeId(url: string): string | null {

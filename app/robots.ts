@@ -36,6 +36,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://darrenlbuckner.com/sitemap.xml',
+    sitemap: 'https://www.darrenlbuckner.com/sitemap.xml',
   }
 }

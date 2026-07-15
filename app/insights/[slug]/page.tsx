@@ -7,6 +7,7 @@ import type { Insight } from '@/lib/types'
 import {
   PERSON_ID,
   PERSON_JOB_TITLE,
+  PERSON_WORKS_FOR,
   PERSON_SAMEAS,
   PERSON_DESCRIPTION,
 } from '@/lib/identity'
@@ -165,6 +166,7 @@ export default async function InsightPostPage({
       name: 'Darren L. Buckner',
       url: siteUrl,
       jobTitle: PERSON_JOB_TITLE,
+      worksFor: PERSON_WORKS_FOR,
       description: PERSON_DESCRIPTION,
       sameAs: PERSON_SAMEAS,
     },

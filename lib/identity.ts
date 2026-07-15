@@ -11,8 +11,18 @@
 /** Stable node identifier that unifies every Person block into one entity. */
 export const PERSON_ID = 'https://www.darrenlbuckner.com/#darren'
 
-/** Canonical job title — identical across every Person block. */
-export const PERSON_JOB_TITLE = 'Founder & CEO, Portal HomeHub'
+/** Canonical job title — identical across every Person block. Kept company-free
+ *  on purpose: third-party citations say plain "founder and CEO" (and some name
+ *  Guyana HomeHub, not Portal HomeHub), so the org linkage lives in worksFor. */
+export const PERSON_JOB_TITLE = 'Founder & CEO'
+
+/** Employer/org linkage — expressed structurally rather than baked into the
+ *  job title. Portal HomeHub is the parent brand. */
+export const PERSON_WORKS_FOR = {
+  '@type': 'Organization',
+  name: 'Portal HomeHub',
+  url: 'https://portalhomehub.com',
+}
 
 /** Canonical, verified profiles. Must be byte-for-byte identical everywhere. */
 export const PERSON_SAMEAS = [

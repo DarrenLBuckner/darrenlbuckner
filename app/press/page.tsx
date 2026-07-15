@@ -62,6 +62,135 @@ const EXTENDED_INTERVIEWS: Record<string, ExtendedInterview> = {
   },
 }
 
+type CoverageItem = {
+  outlet: string
+  format: string
+  title: string
+  date: string
+  url: string
+  cta: string
+  pullQuote?: string
+  attribution?: string
+  jsonLd: Record<string, unknown>
+}
+
+// Building Expo 2026 coverage. Hardcoded (like EXTENDED_INTERVIEWS) because
+// these carry rich per-item JSON-LD (NewsArticle / VideoObject) and link out
+// rather than embed. Person references use PERSON_ID from lib/identity.ts so the
+// entity stays unified — never hardcode name/description/sameAs here.
+const BUILDING_EXPO_COVERAGE: CoverageItem[] = [
+  {
+    outlet: 'News Room Guyana',
+    format: 'Article',
+    title:
+      'Guyana HomeHub brings verified property search to the International Building Expo 2026',
+    date: 'June 11, 2026',
+    url: 'https://newsroom.gy/2026/06/11/guyana-homehub-brings-verified-property-search-to-the-international-building-expo-2026/',
+    cta: 'Read Article',
+    pullQuote:
+      "For too long, buying property in Guyana has meant Facebook posts, WhatsApp messages and hoping it's real. We built Guyana HomeHub to bring order to that chaos — agents and listings reviewed, real accountability, one trusted place.",
+    attribution: '— Darren L. Buckner, founder & CEO of Guyana HomeHub',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'NewsArticle',
+      headline:
+        'Guyana HomeHub brings verified property search to the International Building Expo 2026',
+      description:
+        'News Room Guyana reports on Guyana HomeHub bringing verified, agent-reviewed property search to the International Building Expo 2026, featuring founder & CEO Darren L. Buckner.',
+      datePublished: '2026-06-11',
+      url: 'https://newsroom.gy/2026/06/11/guyana-homehub-brings-verified-property-search-to-the-international-building-expo-2026/',
+      articleSection: 'Business',
+      publisher: {
+        '@type': 'Organization',
+        name: 'News Room Guyana',
+        url: 'https://newsroom.gy',
+      },
+      about: [
+        { '@type': 'Person', '@id': PERSON_ID },
+        {
+          '@type': 'Organization',
+          name: 'Guyana HomeHub',
+          url: 'https://guyanahomehub.com',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Portal HomeHub',
+          url: 'https://portalhomehub.com',
+        },
+      ],
+    },
+  },
+  {
+    outlet: 'NCN — National Communications Network',
+    format: 'Video · Facebook Live',
+    title: 'WATCH || Guyana HomeHub at International Building Expo 2026',
+    date: 'June 27, 2026',
+    url: 'https://www.facebook.com/share/v/18UhFdmKTt/',
+    cta: 'Watch on Facebook',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: 'WATCH || Guyana HomeHub at International Building Expo 2026',
+      description:
+        "Guyana's national broadcaster NCN features Guyana HomeHub and founder & CEO Darren L. Buckner at the International Building Expo 2026 in Georgetown, Guyana.",
+      uploadDate: '2026-06-27',
+      contentUrl: 'https://www.facebook.com/share/v/18UhFdmKTt/',
+      publisher: {
+        '@type': 'Organization',
+        name: 'NCN — National Communications Network',
+      },
+      about: [
+        { '@type': 'Person', '@id': PERSON_ID },
+        {
+          '@type': 'Organization',
+          name: 'Guyana HomeHub',
+          url: 'https://guyanahomehub.com',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Portal HomeHub',
+          url: 'https://portalhomehub.com',
+        },
+      ],
+    },
+  },
+  {
+    outlet: 'Ignite Television',
+    format: 'Video · BuildTV 2026',
+    title: 'BuildTV 2026 | Guyana Home Hub',
+    date: 'July 10, 2026',
+    url: 'https://www.youtube.com/watch?v=fgXTgTgzOMI',
+    cta: 'Watch on YouTube',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: 'BuildTV 2026 | Guyana Home Hub',
+      description:
+        "Ignite Television's BuildTV 2026 segment featuring Guyana HomeHub and founder & CEO Darren L. Buckner at the International Building Expo 2026.",
+      uploadDate: '2026-07-10',
+      contentUrl: 'https://www.youtube.com/watch?v=fgXTgTgzOMI',
+      embedUrl: 'https://www.youtube.com/embed/fgXTgTgzOMI',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Ignite Television',
+      },
+      about: [
+        { '@type': 'Person', '@id': PERSON_ID },
+        {
+          '@type': 'Organization',
+          name: 'Guyana HomeHub',
+          url: 'https://guyanahomehub.com',
+        },
+        {
+          '@type': 'Organization',
+          name: 'Portal HomeHub',
+          url: 'https://portalhomehub.com',
+        },
+      ],
+    },
+  },
+]
+
 export const revalidate = 60
 
 export const metadata: Metadata = {
@@ -118,6 +247,55 @@ export default async function PressPage() {
           the Zillow of the Global South across the Caribbean, Africa, and
           Latin America.
         </p>
+
+        {/* Building Expo 2026 coverage */}
+        <div className="mt-16 space-y-8">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+            Building Expo 2026 Coverage
+          </h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {BUILDING_EXPO_COVERAGE.map((item) => (
+              <article
+                key={item.url}
+                className="flex flex-col rounded-xl border border-border bg-surface p-6"
+              >
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(item.jsonLd),
+                  }}
+                />
+                <span className="self-start rounded-full bg-background px-2.5 py-1 text-xs text-muted">
+                  {item.format}
+                </span>
+                <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-muted">
+                  <span className="font-medium">{item.outlet}</span>
+                  <span aria-hidden="true">&middot;</span>
+                  <span>{item.date}</span>
+                </div>
+                {item.pullQuote && (
+                  <blockquote className="mt-4 border-l-4 border-accent pl-4 text-sm italic leading-relaxed text-foreground">
+                    &ldquo;{item.pullQuote}&rdquo;
+                    {item.attribution && (
+                      <footer className="mt-2 text-xs not-italic text-accent">
+                        {item.attribution}
+                      </footer>
+                    )}
+                  </blockquote>
+                )}
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-block pt-4 text-sm text-accent transition-colors hover:text-accent-dim"
+                >
+                  {item.cta} &rarr;
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
 
         {/* Video embeds */}
         {videoItems.length > 0 && (

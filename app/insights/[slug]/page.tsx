@@ -4,7 +4,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabaseAdmin } from '@/lib/supabase'
 import type { Insight } from '@/lib/types'
-import { PERSON_ID, PERSON_SAMEAS, PERSON_DESCRIPTION } from '@/lib/identity'
+import {
+  PERSON_ID,
+  PERSON_JOB_TITLE,
+  PERSON_SAMEAS,
+  PERSON_DESCRIPTION,
+} from '@/lib/identity'
 
 export const revalidate = 60
 
@@ -159,7 +164,7 @@ export default async function InsightPostPage({
       '@id': PERSON_ID,
       name: 'Darren L. Buckner',
       url: siteUrl,
-      jobTitle: 'Founder & CEO, Portal HomeHub',
+      jobTitle: PERSON_JOB_TITLE,
       description: PERSON_DESCRIPTION,
       sameAs: PERSON_SAMEAS,
     },

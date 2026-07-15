@@ -11,6 +11,9 @@
 /** Stable node identifier that unifies every Person block into one entity. */
 export const PERSON_ID = 'https://www.darrenlbuckner.com/#darren'
 
+/** Canonical job title — identical across every Person block. */
+export const PERSON_JOB_TITLE = 'Founder & CEO, Portal HomeHub'
+
 /** Canonical, verified profiles. Must be byte-for-byte identical everywhere. */
 export const PERSON_SAMEAS = [
   'https://portalhomehub.com',

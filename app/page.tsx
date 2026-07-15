@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import type { PressItem } from '@/lib/types'
 import {
   PERSON_ID,
+  PERSON_JOB_TITLE,
   PERSON_SAMEAS,
   PERSON_DESCRIPTION,
   PERSON_DISAMBIGUATION,
@@ -41,7 +42,7 @@ const jsonLd = {
   '@id': PERSON_ID,
   name: 'Darren L. Buckner',
   alternateName: 'Darren Buckner',
-  jobTitle: 'Entrepreneur & Founder',
+  jobTitle: PERSON_JOB_TITLE,
   description: PERSON_DESCRIPTION,
   disambiguatingDescription: PERSON_DISAMBIGUATION,
   url: 'https://www.darrenlbuckner.com',

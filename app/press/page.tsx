@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { supabaseAdmin } from '@/lib/supabase'
 import type { PressItem } from '@/lib/types'
+import { PERSON_ID } from '@/lib/identity'
 
 type ExtendedInterview = {
   pullQuote: string
@@ -42,7 +43,7 @@ const EXTENDED_INTERVIEWS: Record<string, ExtendedInterview> = {
       about: [
         {
           '@type': 'Person',
-          '@id': 'https://www.darrenlbuckner.com/#darren',
+          '@id': PERSON_ID,
           name: 'Darren L. Buckner',
           url: 'https://www.darrenlbuckner.com',
         },

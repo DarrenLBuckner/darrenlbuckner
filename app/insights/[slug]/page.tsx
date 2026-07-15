@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { supabaseAdmin } from '@/lib/supabase'
 import type { Insight } from '@/lib/types'
+import { PERSON_ID, PERSON_SAMEAS, PERSON_DESCRIPTION } from '@/lib/identity'
 
 export const revalidate = 60
 
@@ -155,20 +156,12 @@ export default async function InsightPostPage({
     }),
     author: {
       '@type': 'Person',
-      '@id': 'https://www.darrenlbuckner.com/#darren',
+      '@id': PERSON_ID,
       name: 'Darren L. Buckner',
       url: siteUrl,
       jobTitle: 'Founder & CEO, Portal HomeHub',
-      description:
-        'U.S. Army veteran and self-taught technologist from St. Louis, Missouri. Founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI — building the Zillow of the Global South.',
-      sameAs: [
-        'https://portalhomehub.com',
-        'https://guyanahomehub.com',
-        'https://www.youtube.com/@DarrenLBuckner',
-        'https://www.linkedin.com/in/darrenlbuckner',
-        'https://x.com/darren_buckner',
-        'https://www.wikidata.org/wiki/Q140560350',
-      ],
+      description: PERSON_DESCRIPTION,
+      sameAs: PERSON_SAMEAS,
     },
     publisher: {
       '@type': 'Organization',

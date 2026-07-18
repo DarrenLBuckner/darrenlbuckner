@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import type { SpeakingTopic } from '@/lib/types'
+import { PERSON_ID } from '@/lib/identity'
 import InquiryForm from './InquiryForm'
 
 export const revalidate = 60
@@ -18,6 +19,55 @@ const formats = [
   { label: 'Fireside Chat', detail: 'Conversational format' },
   { label: 'Workshop', detail: '90 min – half day' },
 ]
+
+// 126th National Business League Conference — National Speaker credential.
+// Hardcoded + dedicated section (mirrors BUILDING_EXPO_COVERAGE on /press): the
+// speaking_topics table has no columns for venue, session title, or dates, and
+// DDL cannot run via the JS client. The Person is referenced by PERSON_ID only
+// (from lib/identity.ts) so the entity never drifts — never hardcode Darren's
+// name/description/sameAs/jobTitle here. Conference @id lives on www so the
+// subEvent's superEvent back-reference stays on the canonical host.
+const NBL_CONFERENCE_ID = 'https://www.darrenlbuckner.com/speaking#nbl-2026'
+
+const NBL_EVENT_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  '@id': NBL_CONFERENCE_ID,
+  name: '126th National Business League Conference',
+  startDate: '2026-08-19',
+  endDate: '2026-08-22',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  url: 'https://nationalbusinessleague.org/conference',
+  location: {
+    '@type': 'Place',
+    name: 'Hilton Atlanta Hotel',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Atlanta',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'The National Business League',
+    foundingDate: '1900',
+    url: 'https://nationalbusinessleague.org',
+  },
+  performer: { '@type': 'Person', '@id': PERSON_ID },
+  subEvent: {
+    '@type': 'Event',
+    '@id': 'https://www.darrenlbuckner.com/speaking#nbl-2026-project-2035',
+    name: 'The Future Is Already Here: How One Veteran Built the Zillow of the Global South with AI — For Under $200 a Month',
+    startDate: '2026-08-21',
+    endDate: '2026-08-22',
+    superEvent: { '@id': NBL_CONFERENCE_ID },
+    performer: { '@type': 'Person', '@id': PERSON_ID },
+    description:
+      'Featured Speaker session in Project 2035: The National Economic Sovereignty Think Tank, on building a multi-country real estate platform with AI as the only development team for under $200 a month.',
+  },
+}
 
 export default async function SpeakingPage() {
   const { data } = await supabase
@@ -76,6 +126,52 @@ export default async function SpeakingPage() {
                 <p className="mt-1 text-xs text-muted">{f.detail}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* National Business League Conference 2026 — National Speaker credential */}
+        <div className="mt-16 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(NBL_EVENT_JSONLD) }}
+          />
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">
+            Featured Engagement
+          </p>
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            National Business League Conference 2026
+          </h2>
+          <div className="mt-4 max-w-3xl space-y-4 leading-relaxed">
+            <p>
+              Darren L. Buckner is a confirmed National Speaker at the 126th
+              National Business League Conference, August 19–22, 2026, at the
+              Hilton Atlanta Hotel in Atlanta, Georgia. He was selected from 643
+              applications.
+            </p>
+            <p>
+              He also serves as a Featured Speaker in Project 2035: The National
+              Economic Sovereignty Think Tank, August 21–22, 2026.
+            </p>
+            <p className="font-semibold text-foreground">
+              Session: The Future Is Already Here — How One Veteran Built the
+              Zillow of the Global South with AI, For Under $200 a Month
+            </p>
+            <p className="text-muted">
+              Building technology is no longer limited to people with a
+              technical background or a large budget. Darren built a
+              multi-country real estate platform in seven months, using AI as
+              his only development team, for under $200 a month. The session
+              covers how that was done, and what it means for founders building
+              in markets the industry has written off.
+            </p>
+            <p className="text-muted">
+              Founded in 1900 by Booker T. Washington and headquartered in
+              Tuskegee, Alabama, the National Business League is the oldest Black
+              business organization in the United States. The 126th Conference is
+              hosted by the National Alliance for Black Business, in partnership
+              with the World Conference of Mayors and the National Black Chamber
+              of Commerce, and sponsored by Traffic Sales &amp; Profit.
+            </p>
           </div>
         </div>
 

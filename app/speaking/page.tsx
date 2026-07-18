@@ -114,8 +114,8 @@ export default async function SpeakingPage() {
             <div>
               <p className="font-medium text-accent">Availability</p>
               <p className="mt-1 text-muted">
-                Virtual and in-person engagements. Based in St. Louis, MO —
-                available to travel domestically and internationally.
+                Virtual and in-person engagements. U.S.-based &mdash; available
+                to travel domestically and internationally.
               </p>
             </div>
             <div>

@@ -69,6 +69,34 @@ const NBL_EVENT_JSONLD = {
   },
 }
 
+// Real Estate Forward: Guyana 2026 & Beyond — Georgetown, Guyana (May 22, 2026).
+// A completed, rights-cleared live speaking appearance that predates NBL.
+// Hardcoded on the same rationale as NBL_EVENT_JSONLD: speaking_topics holds
+// topics, not appearances, and has no columns for venue/date/organizer. The
+// Person is referenced by PERSON_ID only (from lib/identity.ts) so the entity
+// never drifts — never hardcode Darren's name/description/sameAs/jobTitle here.
+// Organizer Sherriann Elcock is named in plain text only; no outbound link (U-5).
+const GEORGETOWN_EVENT_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: 'Real Estate Forward: Guyana 2026 & Beyond',
+  startDate: '2026-05-22',
+  endDate: '2026-05-22',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: 'Centre for Local Business Development',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Georgetown',
+      addressCountry: 'GY',
+    },
+  },
+  performer: { '@type': 'Person', '@id': PERSON_ID },
+  organizer: { '@type': 'Person', name: 'Sherriann Elcock' },
+}
+
 export default async function SpeakingPage() {
   const { data } = await supabase
     .from('speaking_topics')
@@ -171,6 +199,33 @@ export default async function SpeakingPage() {
               hosted by the National Alliance for Black Business, in partnership
               with the World Conference of Mayors and the National Black Chamber
               of Commerce, and sponsored by Traffic Sales &amp; Profit.
+            </p>
+          </div>
+        </div>
+
+        {/* Real Estate Forward: Guyana 2026 & Beyond — Georgetown live appearance */}
+        <div className="mt-16 rounded-xl border border-border bg-surface p-6 sm:p-8">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(GEORGETOWN_EVENT_JSONLD),
+            }}
+          />
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">
+            Speaking Appearance
+          </p>
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Real Estate Forward: Guyana 2026 &amp; Beyond
+          </h2>
+          <p className="mt-2 font-semibold text-foreground">
+            Centre for Local Business Development, Georgetown, Guyana &mdash;
+            May 22, 2026
+          </p>
+          <div className="mt-4 max-w-3xl leading-relaxed">
+            <p className="text-muted">
+              Live speaking appearance at the Guyana real estate industry event
+              convened by Sherriann Elcock, founder of Prestigious Services &amp;
+              Realty 1262.
             </p>
           </div>
         </div>

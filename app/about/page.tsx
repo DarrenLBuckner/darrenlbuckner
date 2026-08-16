@@ -105,8 +105,7 @@ export default async function AboutPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
             U.S. Army veteran, founder of Portal HomeHub, Guyana HomeHub, and
-            PivotPoint AI &mdash; building the Zillow of the Global South from
-            St. Louis, Missouri.
+            PivotPoint AI &mdash; building the Zillow of the Global South.
           </p>
         </div>
       </section>

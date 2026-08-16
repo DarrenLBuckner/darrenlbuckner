@@ -36,7 +36,7 @@ export const PERSON_SAMEAS = [
 
 /** Canonical one-sentence bio reused across schema blocks. */
 export const PERSON_DESCRIPTION =
-  'U.S. Army veteran and self-taught technologist from St. Louis, Missouri. Founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI — building the Zillow of the Global South.'
+  'U.S. Army veteran and self-taught technologist. Founder of Portal HomeHub, Guyana HomeHub, and PivotPoint AI — building the Zillow of the Global South.'
 
 /** Disambiguation statement — separates this Darren L. Buckner from the
  *  Portland, Oregon "Workfrom" founder of a similar name. */

@@ -146,8 +146,7 @@ export default async function HomePage() {
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
           U.S. Army veteran, founder of Portal HomeHub, Guyana HomeHub, and
-          PivotPoint AI &mdash; building the Zillow of the Global South from
-          St. Louis, Missouri.
+          PivotPoint AI &mdash; building the Zillow of the Global South.
         </p>
 
         {/* Credential badges */}
@@ -230,8 +229,7 @@ export default async function HomePage() {
             overlooked.
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-muted leading-relaxed">
-            Based in St. Louis, Missouri with deep ties to Guyana and South
-            Africa.
+            U.S.-based, with deep ties to Guyana and South Africa.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-6">
             <Link

@@ -68,7 +68,7 @@ export default async function ContactPage({
             <div>
               <p className="text-sm font-medium text-accent">Location</p>
               <p className="mt-1 text-sm text-muted">
-                Based in St. Louis, Missouri. Available globally.
+                Based in the United States. Available globally.
               </p>
             </div>
           </div>

@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# confidential — internal brand encyclopedia, must never reach this public repo
+DLB_Encyclopedia_*.md
+
+# local agent/editor config
+.claude/

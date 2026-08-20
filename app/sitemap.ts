@@ -41,6 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/insights/how-to-spot-a-real-estate-scammer-guyana`,
+      lastModified: new Date('2026-08-20'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/insights/caribbean-real-estate-integration`,
       lastModified: new Date('2026-06-14'),
       changeFrequency: 'monthly',

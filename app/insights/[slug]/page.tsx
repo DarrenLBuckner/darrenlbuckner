@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -88,29 +89,112 @@ function formatDate(iso: string): string {
   })
 }
 
-// Minimal block-level renderer. Splits content on blank lines. Each block is
-// one of: --- (rule), **header**, *italic paragraph*, or a prose paragraph.
-// Inline formatting beyond whole-paragraph italics is not supported, which
-// is sufficient for the current post format.
+// Inline formatter. Handles **bold** and [text](url) links within a run of
+// text and returns an array of React nodes. Anything else passes through as a
+// plain string. Kept intentionally small — no nesting, no single-asterisk
+// italics (whole-block italics are handled at the block level below).
+function renderInline(text: string): ReactNode[] {
+  const nodes: ReactNode[] = []
+  const pattern = /\*\*(.+?)\*\*|\[([^\]]+)\]\(([^)\s]+)\)/g
+  let last = 0
+  let key = 0
+  let match: RegExpExecArray | null
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > last) nodes.push(text.slice(last, match.index))
+    if (match[1] !== undefined) {
+      nodes.push(
+        <strong key={key++} className="font-semibold text-foreground">
+          {match[1]}
+        </strong>
+      )
+    } else {
+      const href = match[3]
+      const external = /^https?:\/\//.test(href)
+      nodes.push(
+        <a
+          key={key++}
+          href={href}
+          className="text-accent underline underline-offset-2 transition-colors hover:text-accent-dim"
+          {...(external
+            ? { target: '_blank', rel: 'noopener noreferrer' }
+            : {})}
+        >
+          {match[2]}
+        </a>
+      )
+    }
+    last = match.index + match[0].length
+  }
+  if (last < text.length) nodes.push(text.slice(last))
+  return nodes
+}
+
+// Block-level renderer. Splits content on blank lines. Each block is one of:
+// --- (rule); a bullet list (every line starts with "- "); a ## / ### heading;
+// a legacy whole-line **header**; a whole-line **label:** lead-in; a whole-line
+// *italic* byline; or a prose paragraph. Inline **bold** and [links] are
+// applied within paragraphs, list items, and headings.
 function renderContent(content: string) {
   const blocks = content.trim().split(/\n{2,}/)
   return blocks.map((raw, i) => {
+    // Bullet list: a block whose every non-empty line begins with "- ".
+    const lines = raw.split('\n').map((l) => l.trim()).filter(Boolean)
+    if (lines.length > 0 && lines.every((l) => l.startsWith('- '))) {
+      return (
+        <ul
+          key={i}
+          className="my-5 list-disc space-y-2 pl-6 text-base leading-[1.8] text-foreground marker:text-accent sm:text-lg"
+        >
+          {lines.map((l, j) => (
+            <li key={j}>{renderInline(l.replace(/^-\s+/, ''))}</li>
+          ))}
+        </ul>
+      )
+    }
+
     const block = raw.replace(/\s*\n\s*/g, ' ').trim()
     if (!block) return null
     if (block === '---') {
       return <hr key={i} className="my-10 border-border" />
     }
-    const headerMatch = block.match(/^\*\*(.+)\*\*$/)
-    if (headerMatch) {
+
+    const h3Match = block.match(/^###\s+(.+)$/)
+    if (h3Match) {
+      return (
+        <h3
+          key={i}
+          className="mt-10 mb-3 text-xl font-semibold tracking-tight sm:text-2xl"
+        >
+          {renderInline(h3Match[1])}
+        </h3>
+      )
+    }
+
+    // ## heading, or the legacy whole-line **Header** convention. A fully-bold
+    // block that ends in a colon is a lead-in label, not a section heading.
+    const h2Match = block.match(/^##\s+(.+)$/)
+    const boldOnly = block.match(/^\*\*(.+)\*\*$/)
+    if (boldOnly && boldOnly[1].endsWith(':')) {
+      return (
+        <p
+          key={i}
+          className="mt-6 mb-1 text-base font-semibold text-foreground sm:text-lg"
+        >
+          {boldOnly[1]}
+        </p>
+      )
+    }
+    if (h2Match || boldOnly) {
       return (
         <h2
           key={i}
           className="mt-12 mb-4 text-2xl font-semibold tracking-tight sm:text-3xl"
         >
-          {headerMatch[1]}
+          {renderInline(h2Match ? h2Match[1] : boldOnly![1])}
         </h2>
       )
     }
+
     const italicMatch = block.match(/^\*([^*].*[^*])\*$/)
     if (italicMatch) {
       return (
@@ -127,7 +211,7 @@ function renderContent(content: string) {
         key={i}
         className="my-5 text-base leading-[1.8] text-foreground sm:text-lg"
       >
-        {block}
+        {renderInline(block)}
       </p>
     )
   })

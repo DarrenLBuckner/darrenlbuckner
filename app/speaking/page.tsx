@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { supabase } from '@/lib/supabase'
 import type { SpeakingTopic } from '@/lib/types'
 import { PERSON_ID } from '@/lib/identity'
+import { BLACKNEWS_NBL_URL, BLACKNEWS_NBL_HEADLINE } from '@/lib/coverage'
 import InquiryForm from './InquiryForm'
 
 export const revalidate = 60
@@ -56,6 +57,18 @@ const NBL_EVENT_JSONLD = {
     url: 'https://nationalbusinessleague.org',
   },
   performer: { '@type': 'Person', '@id': PERSON_ID },
+  // Third-party citation for the selection — BlackNews.com, Aug 18, 2026.
+  subjectOf: {
+    '@type': 'NewsArticle',
+    headline: BLACKNEWS_NBL_HEADLINE,
+    url: BLACKNEWS_NBL_URL,
+    datePublished: '2026-08-18',
+    publisher: {
+      '@type': 'Organization',
+      name: 'BlackNews.com',
+      url: 'https://blacknews.com',
+    },
+  },
   subEvent: {
     '@type': 'Event',
     '@id': 'https://www.darrenlbuckner.com/speaking#nbl-2026-project-2035',
@@ -158,27 +171,42 @@ export default async function SpeakingPage() {
         </div>
 
         {/* National Business League Conference 2026 — National Speaker credential */}
-        <div className="mt-16 rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <div
+          id="nbl-2026"
+          className="mt-16 scroll-mt-24 rounded-xl border border-border bg-surface p-6 sm:p-8"
+        >
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(NBL_EVENT_JSONLD) }}
           />
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-accent">
-            Featured Engagement
+            National Speaker Selection
           </p>
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             National Business League Conference 2026
           </h2>
           <div className="mt-4 max-w-3xl space-y-4 leading-relaxed">
             <p>
-              Darren L. Buckner is a confirmed National Speaker at the 126th
+              Darren L. Buckner was selected as a National Speaker for the 126th
               National Business League Conference, August 19–22, 2026, at the
-              Hilton Atlanta Hotel in Atlanta, Georgia. He was selected from 643
+              Hilton Atlanta Hotel in Atlanta, Georgia &mdash; chosen from 643
               applications.
             </p>
             <p>
-              He also serves as a Featured Speaker in Project 2035: The National
-              Economic Sovereignty Think Tank, August 21–22, 2026.
+              He was also named a Featured Speaker for Project 2035: The
+              National Economic Sovereignty Think Tank, August 21–22, 2026.
+            </p>
+            <p className="text-sm text-muted">
+              Coverage:{' '}
+              <a
+                href={BLACKNEWS_NBL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent transition-colors hover:text-accent-dim"
+              >
+                &ldquo;{BLACKNEWS_NBL_HEADLINE}&rdquo;
+              </a>{' '}
+              &mdash; BlackNews.com, August 18, 2026
             </p>
             <p className="font-semibold text-foreground">
               Session: The Future Is Already Here — How One Veteran Built the

@@ -11,6 +11,7 @@ import {
   PERSON_DESCRIPTION,
   PERSON_DISAMBIGUATION,
 } from '@/lib/identity'
+import { NATIONAL_SPEAKER_COVERAGE, AS_SEEN_IN } from '@/lib/coverage'
 
 export const revalidate = 60
 
@@ -112,6 +113,8 @@ const badges = [
 ]
 
 export default async function HomePage() {
+  // Hardcoded coverage (lib/coverage.ts) outranks the DB: the BlackNews feature
+  // is the highest-weight press node of 2026 and press_items carries no schema.
   const { data: pressItems } = await supabase
     .from('press_items')
     .select('*')
@@ -119,7 +122,11 @@ export default async function HomePage() {
     .order('published_date', { ascending: false })
     .limit(1)
 
-  const latestPress: PressItem | null = pressItems?.[0] ?? null
+  const dbPress: PressItem | null = pressItems?.[0] ?? null
+  const coverage = NATIONAL_SPEAKER_COVERAGE[0]
+  const latestPress = coverage
+    ? { title: coverage.title, outlet: coverage.outlet, url: coverage.url }
+    : dbPress
 
   return (
     <>
@@ -176,6 +183,32 @@ export default async function HomePage() {
           >
             Book for Speaking
           </Link>
+        </div>
+      </section>
+
+      {/* As seen in — text wordmarks, links to the actual coverage */}
+      <section
+        aria-label="As seen in"
+        className="border-t border-border px-6 py-10"
+      >
+        <div className="mx-auto max-w-5xl">
+          <p className="mb-6 text-center text-xs font-medium uppercase tracking-[0.3em] text-muted">
+            As seen in
+          </p>
+          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {AS_SEEN_IN.map((outlet) => (
+              <li key={outlet.name}>
+                <a
+                  href={outlet.href}
+                  target={outlet.href.startsWith('https://www.darrenlbuckner.com') ? undefined : '_blank'}
+                  rel={outlet.href.startsWith('https://www.darrenlbuckner.com') ? undefined : 'noopener noreferrer'}
+                  className="text-base font-semibold tracking-tight text-muted transition-colors hover:text-foreground sm:text-lg"
+                >
+                  {outlet.name}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

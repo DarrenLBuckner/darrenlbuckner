@@ -1,7 +1,9 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { supabaseAdmin } from '@/lib/supabase'
 import type { PressItem } from '@/lib/types'
 import { PERSON_ID } from '@/lib/identity'
+import { NATIONAL_SPEAKER_COVERAGE, type CoverageItem } from '@/lib/coverage'
 
 type ExtendedInterview = {
   pullQuote: string
@@ -60,18 +62,6 @@ const EXTENDED_INTERVIEWS: Record<string, ExtendedInterview> = {
       ],
     },
   },
-}
-
-type CoverageItem = {
-  outlet: string
-  format: string
-  title: string
-  date: string
-  url: string
-  cta: string
-  pullQuote?: string
-  attribution?: string
-  jsonLd: Record<string, unknown>
 }
 
 // Building Expo 2026 coverage. Hardcoded (like EXTENDED_INTERVIEWS) because
@@ -248,6 +238,33 @@ export default async function PressPage() {
           Latin America.
         </p>
 
+        {/* National Speaker selection — BlackNews.com feature */}
+        <div className="mt-16 space-y-8">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+            National Business League 2026 &mdash; National Speaker Selection
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {NATIONAL_SPEAKER_COVERAGE.map((item) => (
+              <CoverageCard key={item.url} item={item} />
+            ))}
+            <div className="flex flex-col justify-center rounded-xl border border-border bg-background p-6">
+              <p className="text-sm leading-relaxed text-muted">
+                Darren L. Buckner was selected from 643 applications as a
+                National Speaker at the 126th National Business League
+                Conference (Atlanta, August 19&ndash;22, 2026). Founded in 1900
+                by Booker T. Washington, the National Business League is the
+                oldest Black business organization in the United States.
+              </p>
+              <Link
+                href="/speaking#nbl-2026"
+                className="mt-4 text-sm text-accent transition-colors hover:text-accent-dim"
+              >
+                Speaking credential &amp; session details &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Building Expo 2026 coverage */}
         <div className="mt-16 space-y-8">
           <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -255,44 +272,7 @@ export default async function PressPage() {
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
             {BUILDING_EXPO_COVERAGE.map((item) => (
-              <article
-                key={item.url}
-                className="flex flex-col rounded-xl border border-border bg-surface p-6"
-              >
-                <script
-                  type="application/ld+json"
-                  dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(item.jsonLd),
-                  }}
-                />
-                <span className="self-start rounded-full bg-background px-2.5 py-1 text-xs text-muted">
-                  {item.format}
-                </span>
-                <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-muted">
-                  <span className="font-medium">{item.outlet}</span>
-                  <span aria-hidden="true">&middot;</span>
-                  <span>{item.date}</span>
-                </div>
-                {item.pullQuote && (
-                  <blockquote className="mt-4 border-l-4 border-accent pl-4 text-sm italic leading-relaxed text-foreground">
-                    &ldquo;{item.pullQuote}&rdquo;
-                    {item.attribution && (
-                      <footer className="mt-2 text-xs not-italic text-accent">
-                        {item.attribution}
-                      </footer>
-                    )}
-                  </blockquote>
-                )}
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-auto inline-block pt-4 text-sm text-accent transition-colors hover:text-accent-dim"
-                >
-                  {item.cta} &rarr;
-                </a>
-              </article>
+              <CoverageCard key={item.url} item={item} />
             ))}
           </div>
         </div>
@@ -468,5 +448,43 @@ function PressCard({
         </a>
       )}
     </div>
+  )
+}
+
+function CoverageCard({ item }: { item: CoverageItem }) {
+  return (
+    <article className="flex flex-col rounded-xl border border-border bg-surface p-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(item.jsonLd) }}
+      />
+      <span className="self-start rounded-full bg-background px-2.5 py-1 text-xs text-muted">
+        {item.format}
+      </span>
+      <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+      <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-muted">
+        <span className="font-medium">{item.outlet}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>{item.date}</span>
+      </div>
+      {item.pullQuote && (
+        <blockquote className="mt-4 border-l-4 border-accent pl-4 text-sm italic leading-relaxed text-foreground">
+          &ldquo;{item.pullQuote}&rdquo;
+          {item.attribution && (
+            <footer className="mt-2 text-xs not-italic text-accent">
+              {item.attribution}
+            </footer>
+          )}
+        </blockquote>
+      )}
+      <a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto inline-block pt-4 text-sm text-accent transition-colors hover:text-accent-dim"
+      >
+        {item.cta} &rarr;
+      </a>
+    </article>
   )
 }
